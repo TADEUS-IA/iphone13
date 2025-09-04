@@ -86,6 +86,40 @@
             text-wrap: balance;
         }
 
+        /* Video Controls (Sound button) */
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2; /* Acima do vídeo, mas abaixo do conteúdo principal se necessário */
+        }
+
+        .video-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .video-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .video-controls button svg {
+            width: 24px;
+            height: 24px;
+            color: #fff;
+        }
+
         /* ================================================
             3. SEÇÃO HERO
             ================================================ */
@@ -97,6 +131,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 24px;
+            overflow: hidden; /* Garante que o vídeo não ultrapasse */
         }
         .hero .hero-video-bg {
             position: absolute; top: 50%; left: 50%;
@@ -314,7 +349,7 @@
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
         /* ================================================
-          10. ESTILOS RESPONSIVOS (MOBILE) - AJUSTES
+          10. ESTILOS RESPONSIVOS (MOBILE) - AJUSTES COMPACTOS
           ================================================ */
         @media (max-width: 768px) {
             /* Reduz o padding vertical das seções principais para uma visualização mais compacta */
@@ -322,34 +357,36 @@
             .colors,
             .ios,
             .cta {
-                padding-top: 60px;
-                padding-bottom: 60px;
+                padding-top: 50px; /* Mais compacto */
+                padding-bottom: 50px; /* Mais compacto */
             }
 
             .specs {
-                padding-top: 30px;
-                padding-bottom: 30px;
+                padding-top: 25px; /* Mais compacto */
+                padding-bottom: 25px; /* Mais compacto */
             }
 
             /* Diminui a margem entre os títulos e o conteúdo */
             .section-title {
-                margin-bottom: 40px;
+                margin-bottom: 30px; /* Mais compacto */
+                font-size: clamp(2rem, 7vw, 3.5rem); /* Títulos um pouco menores */
             }
             .section-subtitle {
-                margin-top: -30px;
-                margin-bottom: 40px;
+                margin-top: -20px; /* Mais compacto */
+                margin-bottom: 30px; /* Mais compacto */
+                font-size: clamp(1rem, 3.5vw, 1.5rem); /* Subtítulos um pouco menores */
             }
             
             /* Ajusta a margem da grade de especificações */
             .specs-grid {
-                margin-top: 40px;
-                margin-bottom: 40px;
-                gap: 40px; /* Reduz o espaçamento entre texto e imagem */
+                margin-top: 30px; /* Mais compacto */
+                margin-bottom: 30px; /* Mais compacto */
+                gap: 30px; /* Reduz o espaçamento entre texto e imagem */
             }
 
             /* Garante que o scroll de cores fique otimizado */
             .color-card {
-                 flex: 0 0 clamp(280px, 75vw, 340px);
+                 flex: 0 0 clamp(280px, 85vw, 340px); /* Ocupa um pouco mais da largura em mobile */
             }
         }
     </style>
@@ -365,13 +402,25 @@
 
     <main>
         <section class="hero">
-            <video class="hero-video-bg" autoplay loop muted playsinline poster="placeholder-poster-iphone13.jpg">
+            <video id="heroVideo" class="hero-video-bg" autoplay loop muted playsinline poster="placeholder-poster-iphone13.jpg">
                 <source src="video13.mp4" type="video/mp4">
             </video>
             <div class="hero-content reveal">
                 <h1 class="hero-title">Seu novo superpoder.</h1>
                 <p class="hero-subtitle">Com o poderoso chip A15 Bionic, sistema de câmera dupla avançado e uma tela Super Retina XDR mais brilhante.</p>
                 <a href="#cta-final" class="btn">Comprar Agora</a>
+            </div>
+            <div class="video-controls">
+                <button id="muteToggle">
+                    <svg id="volumeOnIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a11.955 11.955 0 010 12.728l-1.483-1.484a9.959 9.959 0 000-9.76l1.483-1.484z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.757a6.798 6.798 0 010 6.486l-1.484-1.486a4.797 4.797 0 000-3.514l1.484-1.486zM9.75 10.5h.008v.008h-.008V10.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM7.5 10.5h.008v.008H7.5V10.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM4.875 10.5h.008v.008h-.008V10.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 12h-.008v.008H6V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm3 0h-.008v.008H9V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm3 0h-.008v.008H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm3 0h-.008v.008H15V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM9 13.5h.008v.008H9V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm3 0h-.008v.008H12V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm3 0h.008v.008H15V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.147-1.636.422-2.396.234-.847 1.058-1.354 1.938-1.354h11.24z" />
+                    </svg>
+                    <svg id="volumeOffIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="display:none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.147-1.636.422-2.396.234-.847 1.058-1.354 1.938-1.354h11.24z" />
+                    </svg>
+                </button>
             </div>
         </section>
 
@@ -522,21 +571,18 @@
 
     <script>
         // SCRIPT PARA ATUALIZAR O ANO NO RODAPÉ
-        // Garante que o ano de copyright esteja sempre atualizado.
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // SCRIPT PARA ANIMAÇÃO DE ELEMENTOS AO ROLAR A PÁGINA (SCROLL REVEAL)
-        // Utiliza a API IntersectionObserver para performance otimizada, evitando sobrecarregar o navegador.
         const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Quando o elemento entra na tela (isIntersecting), a classe 'is-visible' é adicionada.
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
                 }
             });
         }, {
-            threshold: 0.1 // A animação dispara quando 10% do elemento está visível.
+            threshold: 0.1
         });
 
         revealElements.forEach(element => {
@@ -544,25 +590,50 @@
         });
 
         // SCRIPT PARA O BOTÃO DE CHECKOUT
-        // Centraliza o link de pagamento em uma constante para fácil manutenção.
-        // ADICIONE SEU LINK DE PAGAMENTO AQUI
         const CHECKOUT_LINK = 'https://wa.me/message/DQJBWVDS3BJ4N1'; 
 
         const checkoutButtons = document.querySelectorAll('[data-open-checkout]');
         checkoutButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                event.preventDefault(); // Impede a navegação padrão do link '#'.
-                window.open(CHECKOUT_LINK, '_blank'); // Abre o link de checkout em uma nova aba.
+                event.preventDefault();
+                window.open(CHECKOUT_LINK, '_blank');
             });
         });
         
         // AVISO NO CONSOLE PARA O DESENVOLVEDOR
-        // Um lembrete útil para garantir que o link de checkout de exemplo seja substituído.
         window.addEventListener('load', () => {
             if (!CHECKOUT_LINK || CHECKOUT_LINK.includes('SEU-LINK-AQUI')) {
                 console.warn('⚠ ATENÇÃO: O link do checkout é um exemplo. Substitua a constante CHECKOUT_LINK no script pelo seu link de pagamento real.');
             }
         });
+
+        // SCRIPT PARA O CONTROLE DE ÁUDIO DO VÍDEO
+        const heroVideo = document.getElementById('heroVideo');
+        const muteToggle = document.getElementById('muteToggle');
+        const volumeOnIcon = document.getElementById('volumeOnIcon');
+        const volumeOffIcon = document.getElementById('volumeOffIcon');
+
+        muteToggle.addEventListener('click', () => {
+            if (heroVideo.muted) {
+                heroVideo.muted = false;
+                volumeOnIcon.style.display = 'block';
+                volumeOffIcon.style.display = 'none';
+            } else {
+                heroVideo.muted = true;
+                volumeOnIcon.style.display = 'none';
+                volumeOffIcon.style.display = 'block';
+            }
+        });
+
+        // Garante que os ícones reflitam o estado inicial (mutado)
+        if (heroVideo.muted) {
+            volumeOnIcon.style.display = 'none';
+            volumeOffIcon.style.display = 'block';
+        } else {
+            volumeOnIcon.style.display = 'block';
+            volumeOffIcon.style.display = 'none';
+        }
+
     </script>
 </body>
 </html>
