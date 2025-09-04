@@ -13,8 +13,8 @@
     
     <style>
         /* ================================================
-           1. RESET E VARIÁVEIS GLOBAIS
-           ================================================ */
+            1. RESET E VARIÁVEIS GLOBAIS
+            ================================================ */
         :root {
             --c-bg: #000000;
             --c-bg-panel: #111112;
@@ -40,8 +40,8 @@
         img, video { display: block; max-width: 100%; height: auto; }
 
         /* ================================================
-           2. NAVEGAÇÃO E ELEMENTOS DE UI
-           ================================================ */
+            2. NAVEGAÇÃO E ELEMENTOS DE UI
+            ================================================ */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             height: var(--nav-h);
@@ -87,8 +87,8 @@
         }
 
         /* ================================================
-           3. SEÇÃO HERO
-           ================================================ */
+            3. SEÇÃO HERO
+            ================================================ */
         .hero {
             height: 100svh;
             position: relative;
@@ -131,8 +131,8 @@
         }
         
         /* ================================================
-           4. SEÇÃO DESTAQUES (Feature Grid)
-           ================================================ */
+            4. SEÇÃO DESTAQUES (Feature Grid)
+            ================================================ */
         .features { padding: 120px 24px; background: var(--c-bg-panel); }
         .feature-grid {
             display: grid;
@@ -147,8 +147,8 @@
         .feature-item p { font-size: 1rem; color: var(--c-fg-subtle); line-height: 1.6; }
 
         /* ================================================
-           5. SEÇÃO CORES 
-           ================================================ */
+            5. SEÇÃO CORES 
+            ================================================ */
         .colors { padding: 120px 0; overflow-x: hidden; }
         .color-scroller-wrapper {
             max-width: var(--maxw);
@@ -200,8 +200,8 @@
         .color-card p { color: var(--c-fg-subtle); margin-bottom: 24px; font-size: 1rem; line-height: 1.6; }
 
         /* ================================================
-           6. SEÇÕES DE DETALHES (Texto e Imagem)
-           ================================================ */
+            6. SEÇÕES DE DETALHES (Texto e Imagem)
+            ================================================ */
         .specs { padding: 60px 24px; }
         .specs-grid {
             max-width: var(--maxw); margin: 80px auto;
@@ -240,8 +240,8 @@
         }
         
         /* ================================================
-           7. SEÇÃO IOS 
-           ================================================ */
+            7. SEÇÃO IOS 
+            ================================================ */
         .ios {
             padding: 120px 24px;
             position: relative;
@@ -272,8 +272,8 @@
         }
 
         /* ================================================
-           8. SEÇÃO CTA E FOOTER
-           ================================================ */
+            8. SEÇÃO CTA E FOOTER
+            ================================================ */
         .cta { padding: 120px 24px; text-align: center; }
         .footer {
             background: var(--c-bg-panel);
@@ -304,14 +304,54 @@
         }
 
         /* ================================================
-           9. ANIMAÇÕES DE REVELAÇÃO (Scroll Reveal)
-           ================================================ */
+            9. ANIMAÇÕES DE REVELAÇÃO (Scroll Reveal)
+            ================================================ */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* ================================================
+          10. ESTILOS RESPONSIVOS (MOBILE) - AJUSTES
+          ================================================ */
+        @media (max-width: 768px) {
+            /* Reduz o padding vertical das seções principais para uma visualização mais compacta */
+            .features,
+            .colors,
+            .ios,
+            .cta {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .specs {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            /* Diminui a margem entre os títulos e o conteúdo */
+            .section-title {
+                margin-bottom: 40px;
+            }
+            .section-subtitle {
+                margin-top: -30px;
+                margin-bottom: 40px;
+            }
+            
+            /* Ajusta a margem da grade de especificações */
+            .specs-grid {
+                margin-top: 40px;
+                margin-bottom: 40px;
+                gap: 40px; /* Reduz o espaçamento entre texto e imagem */
+            }
+
+            /* Garante que o scroll de cores fique otimizado */
+            .color-card {
+                 flex: 0 0 clamp(280px, 75vw, 340px);
+            }
+        }
     </style>
 </head>
 <body>
